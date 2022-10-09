@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        return;
-
-        Schema::create('failed_jobs', function (Blueprint $table) {
+        Schema::create('shopping_list_items', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->unique();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+            $table->foreignId('shopping_list_id')->constrained();
+            $table->foreignId('product_id')->nullable()->constrained();
+            $table->string('product')->nullable();
+            $table->integer('amout');
+            $table->integer('order');
         });
     }
 
@@ -33,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        return;
-
-        Schema::dropIfExists('failed_jobs');
+        Schema::dropIfExists('shopping_list_items');
     }
 };

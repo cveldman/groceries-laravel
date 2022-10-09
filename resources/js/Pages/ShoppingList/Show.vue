@@ -30,9 +30,9 @@
     </div>
 
     <div class="divide-y divide-gray-200">
-        <div v-for="(item, index) in items" class="p-4 flex">
+        <div v-for="(item, index) in itemss" class="p-4 flex">
             <div class="flex-grow">
-                {{ item.name }}
+                {{ item.product_id != null ? products[0].name : item.product }}
             </div>
             <div>
                 <button @click="deleteItem(index)" type="button" class="inline-flex items-center rounded-full border border-transparent bg-gray-400 p-1 text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    <div v-if="!items.length" class="text-center">
+    <div v-if="!itemss.length" class="text-center">
         <svg class="mt-2 mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
         </svg>
@@ -57,17 +57,18 @@
 <script>
 export default {
     props: {
-        products: Array
+        products: Array,
+        items: Array
     },
     data() {
         return {
             focused: false,
             search: "",
-            items: []
+            itemss: []
         };
     },
     mounted() {
-        //this.items = this.products;
+        this.itemss = this.items;
     },
     computed: {
         recentProducts() {
@@ -84,16 +85,16 @@ export default {
             this.focused = false;
             this.search = null;
 
-            this.items.push(product);
+            this.itemss.push(product);
         },
         addProduct(product) {
             this.focused = false;
             this.search = null;
 
-            this.items.push(product);
+            this.itemss.push(product);
         },
         deleteItem(index) {
-            this.items.splice(index, 1);
+            this.itemss.splice(index, 1);
         },
          delay(time) {
             return new Promise(resolve => setTimeout(resolve, time));

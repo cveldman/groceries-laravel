@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\App\ShoppingListController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $products = Product::all();
-
-    return inertia('List/Show', compact('products'));
-});
+Route::resource('/lists', ShoppingListController::class)
+    ->only(['index', 'show']);
