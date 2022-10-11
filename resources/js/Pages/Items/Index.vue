@@ -1,7 +1,8 @@
 <template>
     <div>
-        <div class="bg-green-500 p-6">
-            <input type="text" v-model="product" class="rounded-lg border-0 w-full" v-on:keyup.enter="createItem" />
+        <div class="bg-green-500 p-4">
+            <input type="text" v-model="product" class="rounded-lg border-0 w-full"
+                   placeholder="Product toevoegen.. " v-on:keyup.enter="createItem" />
         </div>
 
         <ul role="list" class="divide-y divide-gray-200">
