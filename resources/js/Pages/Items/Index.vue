@@ -8,7 +8,7 @@
             <li v-for="item in items" class="flex py-4">
                 <div class="ml-3 flex-grow">
                     <p class="text-sm font-medium text-gray-900">{{ item.product }}</p>
-                    <p class="text-sm text-gray-500">-</p>
+                    <p class="text-sm text-gray-500"></p>
                 </div>
                 <div class="mr-3">
                     <button type="button" @click="deleteItem(item.id)" class="inline-flex items-center rounded-full border border-transparent bg-gray-400 p-1 text-white shadow-sm hover:bg-gray-700 focus:outline-none">
