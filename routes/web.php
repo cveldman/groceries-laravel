@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\App\ShoppingListController;
+use App\Http\Controllers\App\ItemController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -15,5 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/lists', ShoppingListController::class)
-    ->only(['index', 'show']);
+Route::redirect('/', '/items');
+
+Route::resource('/items', ItemController::class)
+    ->only(['index']);

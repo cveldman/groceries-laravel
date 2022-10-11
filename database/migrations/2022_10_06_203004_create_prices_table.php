@@ -8,6 +8,8 @@ return new class extends Migration
 {
     public function up()
     {
+        return;
+
         Schema::create('prices', function (Blueprint $table) {
             $table->id(); // TODO: Deze kan weg als relatie werkt
             $table->foreignId('product_id');
@@ -19,6 +21,8 @@ return new class extends Migration
 
     public function down()
     {
+        return;
+
         Schema::dropIfExists('prices');
     }
 };

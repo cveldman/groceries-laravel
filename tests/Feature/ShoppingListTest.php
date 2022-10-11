@@ -2,13 +2,12 @@
 
 namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Product;
 use App\Models\Supermarket;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class ShoppingListTest extends TestCase
 {
     use RefreshDatabase;
 
