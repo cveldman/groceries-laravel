@@ -1,16 +1,20 @@
 <template>
     <div>
-        <div>
-            <input type="text" v-model="product" v-on:keyup.enter="createItem" />
+        <div class="bg-green-500 p-6">
+            <input type="text" v-model="product" class="rounded-lg border-0 w-full" v-on:keyup.enter="createItem" />
         </div>
-        <div v-for="item in items" class="flex">
-            <div class="flex-grow">
-                {{ item.product }}
-            </div>
-            <div>
-                <button @click="deleteItem(item.id)">Delete</button>
-            </div>
-        </div>
+
+        <ul role="list" class="divide-y divide-gray-200">
+            <li v-for="item in items" class="flex py-4">
+                <div class="ml-3 flex-grow">
+                    <p class="text-sm font-medium text-gray-900">{{ item.product }}</p>
+                    <p class="text-sm text-gray-500">-</p>
+                </div>
+                <div>
+                    <button @click="deleteItem(item.id)">Delete</button>
+                </div>
+            </li>
+        </ul>
     </div>
 </template>
 
