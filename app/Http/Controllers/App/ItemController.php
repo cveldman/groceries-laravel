@@ -13,6 +13,6 @@ class ItemController extends Controller
         $itemss = Item::all();
         $products = Product::all();
 
-        return inertia('Items/Index', compact('itemss', 'products'));
+        return inertia('Item/Index', compact('itemss', 'products'));
     }
 }

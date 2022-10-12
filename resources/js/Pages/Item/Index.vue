@@ -2,7 +2,7 @@
     <div>
         <div class="bg-green-500 p-4">
             <input type="text" v-model="product" class="rounded-lg border-0 w-full"
-                   placeholder="Product toevoegen.. " v-on:keyup.enter="createItem" />
+                   placeholder="Product toevoegen.. " v-on:keyup.enter="addItem" />
         </div>
 
         <ul v-if="items.length" role="list" class="divide-y divide-gray-200">
@@ -43,6 +43,9 @@
 </template>
 
 <script>
+
+import { addItem, addProduct, deleteItem } from "@/Services/ItemService";
+
 export default {
     props: {
         itemss: Array,
@@ -60,35 +63,35 @@ export default {
     methods: {
         async addProduct(id) {
             try {
-                const response = await axios.post('/api/items', { product_id: id });
+                const product = await addProduct(id);
 
-                this.items.push(response.data);
+                this.items.push(product);
 
                 this.product = null;
             } catch (e) {
-                console.log(e);
+                console.log(e); // TODO: Add notification when request fails
             }
         },
-        async createItem() {
+        async addItem() {
             try {
-                const response = await axios.post('/api/items', { product: this.product });
+                const product = await addItem(this.product);
 
-                this.items.push(response.data);
+                this.items.push(product);
 
                 this.product = null;
             } catch (e) {
-                console.log(e);
+                console.log(e); // TODO: Add notification when request fails
             }
         },
         async deleteItem(id) {
             try {
-                await axios.delete('/api/items/' + id);
+                await deleteItem(id);
 
                 const index = this.items.findIndex(item => item.id === id);
 
                 this.items.splice(index, 1);
             } catch (e) {
-                console.log(e);
+                console.log(e); // TODO: Add notification when request fails
             }
         }
     }

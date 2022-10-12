@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\App\ItemController;
+use App\Http\Controllers\App\ListController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', '/items');
+
+Route::resource('/lists', ListController::class);
 
 Route::resource('/items', ItemController::class)
     ->only(['index']);
