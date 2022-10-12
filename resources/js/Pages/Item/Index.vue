@@ -18,13 +18,13 @@
                 </span>
 
                 <div class="flex-grow">
-                    <p class="text-base font-medium text-gray-900" style="margin-top: 3px; margin-bottom: 3px;">
+                    <p class="text-base font-medium text-gray-900" style="margin-top: 8px;">
                         {{ item.product_id ? products[item.product_id - 1].name : item.product }}
                     </p>
                     <!-- <p class="text-sm text-gray-500"></p> -->
                 </div>
                 <div>
-                    <button type="button" @click="deleteItem(item.id)" class="inline-flex items-center rounded-full border border-transparent bg-gray-400 p-1 text-white shadow-sm hover:bg-gray-700 focus:outline-none">
+                    <button type="button" @click="deleteItem(item.id)" class="inline-flex items-center rounded-full border border-transparent bg-gray-400 p-1 text-white shadow-sm hover:bg-gray-700 focus:outline-none"  style="margin-top: 5px;">
                         <svg  class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
