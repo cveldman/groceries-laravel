@@ -11,7 +11,7 @@
         <div v-if="product || focused" class="h-40 z-10 absolute bg-gray-200 border-2 border-gray-200 left-4 right-4 mt-4">
             <div v-if="true">
                 <div v-if="true">
-                    <p @click="addProduct(product.id)" v-for="product in products" class="p-4 text-sm font-medium text-gray-900">
+                    <p @click="addProduct(product.id)" v-for="product in filteredProducts" class="p-4 text-sm font-medium text-gray-900">
                         {{ product.name }}
                     </p>
                 </div>
@@ -84,9 +84,8 @@ export default {
     },
     computed: {
         filteredProducts() {
-            return this.products.filter(product => {
-                // Filter by input
-                return product.name.toLowerCase().indexOf(this.product.toLowerCase()) != -1;
+            return this.products.filter(p => {
+                return p.name.toLowerCase().indexOf(this.product.toLowerCase()) != -1;
             });
 
             //.filter(product => {
