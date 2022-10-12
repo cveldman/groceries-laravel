@@ -86,7 +86,7 @@ export default {
         filteredProducts() {
             return this.products.filter(product => {
                 // Filter by input
-                return product.name.toLowerCase().indexOf(this.product.toLowerCase()) !== -1;
+                return product.name.toLowerCase().indexOf(this.product.toLowerCase()) != -1;
             });
 
             //.filter(product => {
