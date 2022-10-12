@@ -84,6 +84,10 @@ export default {
     },
     computed: {
         filteredProducts() {
+            if (this.product === '' || this.product === null || this.product.value === 0){
+                return [];
+            }
+
             return this.products.filter(p => {
                 return p.name.toLowerCase().indexOf(this.product.toLowerCase()) != -1;
             });
