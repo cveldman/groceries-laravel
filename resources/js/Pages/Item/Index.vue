@@ -8,11 +8,11 @@
                    v-on:keyup.enter="addItem" class="mt-3 rounded-lg border-0 w-full" />
         </div>
 
-        <div v-if="product || focused" class="h-40 z-10 absolute bg-gray-200 border-2 border-gray-200 left-4 right-4 mt-4">
+        <div v-if="focused" class="h-40 z-10 absolute bg-gray-200 border-2 border-gray-200 left-4 right-4 mt-4">
             <div v-if="true">
                 <div v-if="true">
-                    <p @click="addProduct(product.id)" v-for="product in filteredProducts" class="p-4 text-sm font-medium text-gray-900">
-                        {{ product.name }}
+                    <p @click="addProduct(p.id)" v-for="p in filteredProducts" class="p-4 text-sm font-medium text-gray-900">
+                        {{ p.name }}
                     </p>
                 </div>
                 <div v-else>
