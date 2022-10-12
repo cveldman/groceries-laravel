@@ -85,12 +85,14 @@ export default {
     computed: {
         filteredProducts() {
             return this.products.filter(product => {
-                // Filter already added products
-                return !this.items.find(item => item.product_id === product.id);
-            }).filter(product => {
                 // Filter by input
                 return product.name.toLowerCase().indexOf(this.product.toLowerCase()) !== -1;
             });
+
+            //.filter(product => {
+            //    // Filter already added products
+            //    return !this.items.find(item => item.product_id === product.id);
+            //})
         }
     },
     methods: {
