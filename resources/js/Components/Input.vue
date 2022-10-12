@@ -1,12 +1,10 @@
 <template>
-    <li class="flex p-4">
-        <slot></slot>
-    </li>
+    <input type="text" class="rounded-lg border-0 w-full" />
 </template>
 
 <script>
 export default {
-    name: "Item"
+    name: "Input"
 }
 </script>
 
