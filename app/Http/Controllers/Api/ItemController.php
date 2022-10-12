@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreItemRequest;
 use App\Models\Item;
-use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
@@ -13,10 +12,7 @@ class ItemController extends Controller
     {
         $item = Item::create($request->validated());
 
-        return response()->json([
-            'id' => $item->id,
-            'product' => $item->product
-        ]);
+        return response()->json($item);
     }
     public function destroy(Item $item)
     {

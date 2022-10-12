@@ -9,7 +9,8 @@ class StoreItemRequest extends FormRequest
     public function rules()
     {
         return [
-            'product' => ['required', 'string', 'max:255']
+            'product' => ['string', 'max:255'],
+            'product_id' => ['exists:products,id']
         ];
     }
 }

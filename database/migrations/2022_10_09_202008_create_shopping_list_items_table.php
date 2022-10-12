@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             // $table->foreignId('shopping_list_id')->constrained();
-            // $table->foreignId('product_id')->nullable()->constrained();
+            $table->foreignId('product_id')->nullable()->constrained();
             $table->string('product')->nullable();
             // $table->integer('amout');
             // $table->integer('order');

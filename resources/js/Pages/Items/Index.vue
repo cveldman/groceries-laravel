@@ -6,12 +6,24 @@
         </div>
 
         <ul v-if="items.length" role="list" class="divide-y divide-gray-200">
-            <li v-for="item in items" class="flex py-4">
-                <div class="ml-3 flex-grow">
-                    <p class="text-sm font-medium text-gray-900">{{ item.product }}</p>
-                    <p class="text-sm text-gray-500"></p>
+            <li v-for="item in items" class="flex p-4">
+
+                <img v-if="item.product_id" class="inline-block h-10 w-10 rounded-full mr-4"
+                     :src="products[item.product_id - 1].image" alt="Product">
+
+                <span v-else class="inline-block h-10 w-10 overflow-hidden rounded-full bg-gray-200 mr-4">
+                    <svg class="h-full w-full text-gray-500 p-2.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                    </svg>
+                </span>
+
+                <div class="flex-grow">
+                    <p class="text-base font-medium text-gray-900" style="margin-top: 3px; margin-bottom: 3px;">
+                        {{ item.product_id ? products[item.product_id - 1].name : item.product }}
+                    </p>
+                    <!-- <p class="text-sm text-gray-500"></p> -->
                 </div>
-                <div class="mr-3">
+                <div>
                     <button type="button" @click="deleteItem(item.id)" class="inline-flex items-center rounded-full border border-transparent bg-gray-400 p-1 text-white shadow-sm hover:bg-gray-700 focus:outline-none">
                         <svg  class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -33,7 +45,8 @@
 <script>
 export default {
     props: {
-        itemss: Array
+        itemss: Array,
+        products: Array
     },
     data() {
         return {
@@ -45,6 +58,17 @@ export default {
         this.items = this.itemss;
     },
     methods: {
+        async addProduct(id) {
+            try {
+                const response = await axios.post('/api/items', { product_id: id });
+
+                this.items.push(response.data);
+
+                this.product = null;
+            } catch (e) {
+                console.log(e);
+            }
+        },
         async createItem() {
             try {
                 const response = await axios.post('/api/items', { product: this.product });
