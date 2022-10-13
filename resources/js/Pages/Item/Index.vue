@@ -3,25 +3,7 @@
         <div class="bg-green-500 p-4">
             <h1 class="text-2xl font-semibold text-white">Boodschappen</h1>
             <input type="text" v-model="product" placeholder="Product toevoegen"
-                   @focus="focused = true"
-                   @blur="delay(10).then(() => focused = false)"
                    v-on:keyup.enter="addItem" class="mt-3 rounded-lg border-0 w-full" />
-        </div>
-
-        <div v-if="focused" class="h-40 z-10 absolute bg-gray-200 border-2 border-gray-200 left-4 right-4 mt-4">
-            <div v-if="true">
-                <div v-if="true">
-                    <p @click="addProduct(p.id)" v-for="p in filteredProducts" class="p-4 text-sm font-medium text-gray-900">
-                        {{ p.name }}
-                    </p>
-                </div>
-                <div v-else>
-                    Geen resultaten
-                </div>
-            </div>
-            <div v-else>
-                Recent
-            </div>
         </div>
 
         <List v-if="items.length">
@@ -50,6 +32,7 @@
             <h3 class="mt-2 text-sm font-medium text-gray-900">Geen producten</h3>
             <p class="mt-1 text-sm text-gray-500">Ga aan de slag door een product toe te voegen!</p>
         </div>
+
     </div>
 </template>
 
@@ -69,34 +52,16 @@ export default {
         Avatar
     },
     props: {
-        itemss: Array,
-        products: Array
+        itemss: Array
     },
     data() {
         return {
-            product: null,
-            items: [],
-            focused: false
+            product: '',
+            items: []
         };
     },
     mounted() {
         this.items = this.itemss;
-    },
-    computed: {
-        filteredProducts() {
-            if (this.product === '' || this.product === null || this.product.value === 0){
-                return [];
-            }
-
-            return this.products.filter(p => {
-                return p.name.toLowerCase().indexOf(this.product.toLowerCase()) != -1;
-            });
-
-            //.filter(product => {
-            //    // Filter already added products
-            //    return !this.items.find(item => item.product_id === product.id);
-            //})
-        }
     },
     methods: {
         async addProduct(id) {
@@ -132,9 +97,6 @@ export default {
             } catch (e) {
                 console.log(e); // TODO: Add notification when request fails
             }
-        },
-        delay(time) {
-            return new Promise(resolve => setTimeout(resolve, time));
         }
     }
 }
